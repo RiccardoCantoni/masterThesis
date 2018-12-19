@@ -418,7 +418,7 @@ AND THE COMMITTEE ON GRADUATE STUDIES}
         \begin{center}
             \Large
             {\sc Universit\`a degli Studi di Milano} \\
-            Facolt\`a di Scienze e Tecnologie \\
+            Dipartimento di Informatica ``Giovanni Degli Antoni"\\
             {\em \@dept}
         \end{center}
         \vskip1in
@@ -427,19 +427,18 @@ AND THE COMMITTEE ON GRADUATE STUDIES}
 	\end{center}
 	\vfill
         \begin{description}
-        \item[Relatore:] \@relatore
-        \item[Correlatori:] \@correlatore
+        \item[Supervisor:] \@relatore
+        \item[Tutors:] \@correlatore
         \end{description}
 	\vskip0.5in
         \null\hfill
         \parbox{3in}{
-          Autore: \\
+          Author: \\
           \expandafter{\@author}
-	  \\ Matricola: \@matricola
-          }
+	  \\           }
         \vfill
 	\begin{center}
-         \large   Anno Accademico \@anno
+         \large   Academic year \@anno
         \end{center}
         \newpage}
 
@@ -541,14 +540,14 @@ of Doctor of Philosophy.
 % signature page should come at end
         \ifonline\setcounter{page}{4}\else
         \ifcopyright\ifthesiscopyright\thesiscopyrightpage\else\tradcopyrightpage\fi\fi
-        \cleardoublepage}
+        }
         
 
 \def\prefacesection#1{%
         \chapter*{#1}
         \addcontentsline{toc}{chapter}{#1}}
 
-\def\afterpreface{\newpage
+\def\afterpreface{
         \tableofcontents
         \iftablespage
                 \listoftables

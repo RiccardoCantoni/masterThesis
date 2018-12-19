@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,twoside]{report}
+\documentclass[12pt,a4paper,oneside]{report}
 \usepackage{suthesis-2e}
 \usepackage[a4paper]{geometry}
 \usepackage{amssymb,amsmath,amsthm}
@@ -10,8 +10,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage{float}
 \usepackage{longtable}
-\usepackage{verbatim}
-\usepackage{fancyvrb}
 \usepackage[style=numeric,sorting=none,useprefix,hyperref,backend=bibtex]{biblatex}
 
 \graphicspath{{imgs/}}
@@ -26,57 +24,27 @@
 \tikzstyle{ball} = [draw,fill=black!5, circle]
 
 \begin{document}
-\thispagestyle{empty}
-\clearpage\mbox{}\clearpage
 \title{
 Artificial Intelligence based \protect\\
 Narration Engine \protect\\ 
 to improve engagement \protect\\ 
 \vspace{8pt}
 and to support long term exergaming}
-\author{Dr. Riccardo Cantoni}
+\author{Riccardo Cantoni}
 \dept{Corso di Laurea in Informatica} 
 \anno{2017-2018}
 \matricola{901564}
 \relatore{Prof. Alberto Borghese}
 \correlatore{Dr. Jacopo Essenziale, Dr. Renato Mainetti}
 \copyrightyear{2018}
-\copyrightfalse
 \beforepreface
-\clearpage\mbox{}\clearpage
-\prefacesection{Preface}{
- This work has been written to fulfill the requirements of the Master Degree in Computer Science at the University of Milan, on the subject of the procedural generation of narrative, as a means to reinforce the engagement in long term health-related activities.
- 
- The project was defined together with my supervisor and tutors.
- 
- I worked on researching the subject, designing a solution and writing this thesis from March to December 2018.
- 
- \bigskip
- 
-Generating narrative algorithmically involves attempting to draw connections between the disparate fields of narratology, human creativity and computer science. This area of research has been explored before from many other points of view, but still offers many open questions.
-
-\bigskip
-
-The challenge offered by such an intriguing subject made working on it particularly stimulating and interesting. 
-
-Moreover, the goals of this work are not purely theoretical: since the beginning this was presented to me as a subject with immediate and useful practical applications. 
-
-This made working on it even more engaging.
-
-\bigskip
-
-I would like to thank my supervisor Prof. Alberto Borghese for giving me this opportunity, and my tutors Jacopo and Renato for the guidance and support they provided me with during these months.
-}
-
-
-\clearpage\mbox{}\clearpage
-
+\prefacesection{Preface}
+This thesis tells you all you need to know about...
+\prefacesection{Acknowledgments}
+I would like to thank...
 \afterpreface
 
-\thispagestyle{empty}
-\clearpage\mbox{}\clearpage
-
-
+\pagebreak
 
 \chapter{Introduction}
 \section{Goals and Applications}
@@ -139,7 +107,7 @@ The Virtual Caregiver also provides caregivers and clinicians with data pertaini
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=14cm]{giraffmovecare}
+\includegraphics[width=13cm]{giraffmovecare}
 \caption{Architecture of MoveCare \cite{movecareimage}}
  \label{fig:movecare}
  \end{center}
@@ -187,6 +155,7 @@ The range and variety of activities available to these users is forcibly limited
 
 The task of maintaining long-term engagement is particularly challenging under these conditions, because of the inherently repetitive nature of some activities, together with the desired time span of their usage.
 
+%TODO intrinsic extrinsic start
 The ways in which motivation is increased have been subject of extensive studies in the field of social psychology. A distinction is made between \textit{intrinsic}, or \textit{internal}, and \textit{extrinsic}, or \textit{external} motivation.
 
 The difference lies in where the motivation comes from: in the case of intrinsic motivation, the drive comes from within the activity itself, and the interest or satisfaction that derive from it \cite{vallerand92}.
@@ -208,6 +177,8 @@ This limit is not shared by intrinsic motivation \cite{ryan2000}.
 An approach that has been used to address the issue of engagement is the implementation of Gamification techniques. Gamification is defined as ``using Game Design elements in non-gaming contexts" \cite{deterdinggamification}. 
 
 Gamification works by introducing elements reinforcing extrinsic motivation, especially to activities that struggle in generating intrinsic motivation, perhaps because of their repetitiveness or their lack of appeal \cite{seaborn2015gamification}.
+
+%TODO intrinsic extrinsic end
 
 Studies have shown how gamification can be effective in reinforcing desirable behaviours and the volume of user activity \cite{hamari14} in many fields of application, including:
 
@@ -320,6 +291,8 @@ Still, the problem of variety remains. Given that activities constitute fixed sc
 For example, the same activity of moving one's body to avoid obstacles that are in the path of the avatar, can once become a scene in which the avatar is moving on a horse through a forest, and once one in which it is crossing a body of water on a boat. The mechanics would remain, and the activity itself would have the same effect on the health of the user. While the comparatively simple operation of replacing the assets would allow for the scene to be recycled in various narrative contexts.
 
 This would in turn increase the size of the output space. The generator, under the same circumstances, would not be forced to only generate stories in which the hero travels through a forest, but could also generate some in which he travels on the ocean, or through a city, or a desert, and so on. This would allow for more varied and interesting stories.
+
+\pagebreak
 
 \subsection{Requirements}
 Java was chosen as programming language to be used in this work. This ensures that it remains reasonably compatible with the systems explained above, as well as being easy to deploy and maintain.
@@ -553,7 +526,7 @@ The ways in which this model has been incorporated in the designing and construc
 
 \pagebreak
 
-\section{Vladimir Propp's \textit{Morphology of the Folktale}}
+\section{Propp's \textit{Morphology of the Folktale}}
 Vladimir Propp's seminal work \textit{Morphology of the Folktale} \cite{propp} dates back to 1928. However it was largely ignored in the West until it was translated decades later. It is considered to be one of the most important works in the study of Folklore, as well as in the field of Morphology. 
 
 Propp relies heavily on a large collection of folktales from traditional Russian folklore, \textit{Russian Fairy Tales}, composed by Aleksandr Afanas'ev and originally published in Russia in 1855. It is a collection of nearly 600 tales, which Propp uses as a dataset to base his analysis on.
@@ -1175,7 +1148,7 @@ At both these levels of abstraction, the adherence to generation constraints and
 
 At the end of this process, a Plot is given in output, as a sequence of story nodes. This is going to be input for the second layer, that focuses on translating this plot into readable text.
 
-This component iteratively parses the plot, associating nodes to variables, and variables to text and activities, using a set of dictionaries to process variables into appropriate, consistent, ground expressions. This process will be the subject of chapter 6.
+This component iteratively parses the plot, associating nodes to variables, and variables to text and activities, using a set of dictionaries to process variables into appropriate, consistent, ground expressions. This process will be the subject of chapter 5.
 
 \bigskip
 
@@ -2068,863 +2041,9 @@ The final output is a .json file. It contains an array of Json Objects, each of 
 \item \textit{activity}: the identifier of an activity, or \textit{null} if no activity is associated to this node. Only the activities specified in input will appear in the output.
 \end{itemize}
 
-The length of the array varies, according to the variability inherent to the plot generation algorithm. With the current, "proof of concept", settings it varies from around 75 to around 150 elements.
+The length of the array varies, according to the variability inherent to the plot generation algorithm. With the current, "proof of concept", settings it varies between 75 and 150 elements.
 
 \pagebreak
-
-\chapter{Results}
-In this chapter are shown two examples of generated stories: \textit{``Prince Boris and the Black Knight"}, and \textit{``The Youth and the Evil King"}.
-
-\bigskip
-
-The plot generation layer does not provide any title to its stories. Titles have been given to them in order to provide some reference and context.
-
-The titles follow a pattern that is common in many folktales: \textit{Peter and the Wolf}, \textit{Little Red Riding Hood and the Wolf}, \textit{Morozko and Father Frost}, \textit{Princess Vasilisa and the Fire Bird}. In all these cases the title presents the two main characters, being the hero and the villain.
-
-\bigskip
-
-In order to replicate this, once the Plot Generator Layer has generated the sequence of story nodes defining the plot, an additional node is added at the top of it before submitting it to the Text Generation Layer. Since it is added after the plot generation process is complete, this node will not influence the development of the story.
-
-This additional node is associated to the text string \textit{``HERO and VILLAIN"}. 
-
-Following the text generation process outlined in chapter 6, this node is processed along with the other nodes, and the keywords \textit{``HERO"} and \textit{``VILLAIN"} are resolved to ground existents picked from the appropriate dictionaries, like \textit{``Prince Boris"}, as the hero, or \textit{``the Black Knight"}, as the villain.
-
-This way \textit{``HERO and VILLAIN"} is translated into \textit{``Prince Boris and the Black Knight"}, while the text generation state mechanic explained in section 6.1 ensures the consistency in the choice of characters, so that those appearing in the title are the same ones that take part in the story itself.
-
-In the output, the title will appear as the first line.
-
-\bigskip
-
-For the generation of these two stories the existent dictionaries, containing locations, characters and items, have been populated with items from the classic setting of Russian folktales.
-
-As explained in section 6.1.1, the dictionary contains 8 classes of existents: \textit{Hero} (populated with 10 entries), \textit{Villain} (8 entries), \textit{Donor} (8 entries), \textit{Dispatcher} (3 entries), \textit{False Hero} (5 entries), \textit{Victim} (5 entries), \textit{Item} (8 entries), \textit{Location} (6 entries).
-
-\bigskip
-
-Any story generally follows a main sequence of scenes, which is fixed and static, as defined in Propp's formalism. This sequence of scenes is described in chapter 2. 
-
-In short it develops as follows: a villainy is committed, the hero embarks in a quest to liquidate it, obtains help in the form of a helper character or an inanimate object, goes to where the villain is, fights him, is victorious and finally returns to be rewarded.
-
-Clearly, any number of things can go wrong in this sequence of events and when this happens the story derails: other characters are introduced, the hero attempts to overcome the same obstacles multiple times, he is maybe defeated a few times, but eventually always triumphs.
-
-This means that the generated story can be longer or shorter depending on the amount of subplots that need to be introduced in order to resolve the various impasses.
-
-\bigskip
-
-Each line is the result of the text generation process described in chapter 6. Each node given in output by the plot generation layer is translated into its final textual form over multiple steps, one of which is the transformation of keywords in actual instances of the corresponding existent.
-
-\bigskip
-
-These two stories have been selected as examples because they highlight different features of the generation process.
-
-Along with their text the processes that led to their definition are explained, in order to show how the generation process works.
-
-\pagebreak
-
-\section{Prince Boris and the Black Knight}
-
-This generated story has been chosen as a first example because it develops nearly linearly, most obstacles being overcome at the first attempt. This way the narrative structure is more evident, as only a minimal amount of subplots is needed.
-
-\bigskip
-
-The story begins as follows:
-
-\bigskip
-
-\begin{Verbatim}[frame=single]
-
-PRINCE BORIS AND THE BLACK KNIGHT
-
-prince Boris lives at the village
-the Black Knight demands the old man to be murdered
-the demand is accepted
-the old man is murdered
-the Black Knight goes in hiding at the tower
-
-\end{Verbatim}
-
-\bigskip
-
-It opens with the \textit{Villainy} scene. In it, the villain commits some form of misdeed towards an innocent character, and then leaves the scene.
-
-The graph structure associated to the scene is shown here. For ease of comprehension, node labels do not represent the actual ID of the nodes, but instead reflect the semantic meaning that will be given to the nodes during the text generation step.
-
-\begin{figure}[H]
-	\caption{Structure of the \textit{Villainy} scene}
-	\label{fig:littlered}
-	
-	\bigskip
-	
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=30]
-	\node[dot,label={[align=left]below right:{abduction}}] (abduction) [] {};
-	\node[dot,below of = abduction, label={[align=left]below right:{seizure}}] (seizure) [] {};
-	\node[dot,below of = seizure,label={[align=left]below right:{pillaging}}] (pillaging) [] {};
-	\node[dot,below of = pillaging,label={[align=left]below right:{imprisonment}}]
-	(imprisonment) [] {};
-	\node[invis,left of = imprisonment, xshift=-2cm] (eps) [] {intro};
-	\node[dot,below of = imprisonment,label={[align=left]below right:{demand\_imprisonment}}] (demandi) [] {};
-	\node[dot,below of = demandi,label={[align=left]below right:{demand\_murder}}] (demandm) [] {};
-	\node[dot,below of = demandm, label={[align=left]below right:{murder}}] (murder) [] {};
-	\node[dot,below of = murder, label={[align=left]below right:{war\_declaration}}] (ward) [] {};
-	\node[dot,right of = ward, xshift=2cm, label={[align=left]below right:{war}}] (war) [] {};
-	\node[dot,right of = demandm, xshift=1.5cm, label={[align=left]above right:{demand\_ack}}] (ack) [] {};
-	\node[dot,right of = seizure, xshift=2cm, label={[align=left]below right:{item\_missing}}] (item) [] {};
-	\node[dot,right of = imprisonment, xshift=6cm, label={[align=left]below right:{villain\_retreat}}] (retreat) [] {};
-	
-	\path
-	(eps) edge [bend left = 30] node {} (abduction)
-	(eps) edge [bend left = 20] node {} (seizure)
-	(eps) edge [] node {} (pillaging)
-	(eps) edge [] node {} (imprisonment)
-	(eps) edge [] node {} (demandi)
-	(eps) edge [line width=2] node {} (demandm)
-	(eps) edge [bend right = 20] node {} (murder)
-	(eps) edge [bend right = 30] node {} (ward)
-	(seizure) edge [] node {} (item)
-	(pillaging) edge [] node {} (item)
-	(demandm) edge [line width=2] node {} (ack)
-	(demandi) edge [] node {} (ack)
-	(ward) edge [] node {} (war)
-	(abduction) edge [bend left = 30] node {} (retreat)
-	(item) edge [] node {} (retreat)
-	(ack) edge [] node {} (imprisonment)
-	(imprisonment) edge [] node {} (retreat)
-	(murder) edge [bend right = 20,line width=2] node {} (retreat)
-	(ack) edge [line width=2] node {} (murder)
-	(war) edge [bend right = 20] node {} (retreat);
-	\end{tikzpicture}
-\end{figure}
-
-The graph traversal algorithm described in 5.1.2 traverses the graph until a final node is reached. It then outputs the sequence of nodes it encountered along the resulting path (highlighted in the figure). The sequence contains the nodes: \textit{intro}, \textit{demand\_murder}, \textit{demand\_ack}, \textit{murder}, \textit{villain\_retreat}.
-
-\bigskip
-
-As explained in 5.1.2, for each node in the graph defining a scene, the \textit{local frequency}, as the number of times the node has been used in the current generation process, and the \textit{global frequency}, as the number of times it has been used since the first generation was launched, are recorded.
-
-After the graph traversal step, both frequencies are updated: each node in the path has its frequencies increased by one. 
-
-Although several are available, the system is designed to use the traversal policy \textit{inverse frequency} (see 5.1.2). This policy uses information about the depth of the node in the exploration tree and about the frequencies of the node to select what node is to be explored next.
-
-As a consequence, the more a node has been used, the less likely it is to be used again, both within the same story and in any future ones.
-
-\bigskip
-
-In the later step of text generation, explained in detail in chapter 6, each node is associated to a piece of text, while existents are picked from the appropriate dictionary. The first node, \textit{intro}, is takes here as example.
-
-\begin{enumerate}\setlength{\itemsep}{0pt}
-	\item The system uses the ID of the node to retrieve a string from a set of short pieces of text associated to it in the text dictionary. 
-	
-	In this case the set contains strings like:
-	\begin{itemize}\setlength{\itemsep}{0pt}
-		\item \textit{HERO lives at LOCATION}
-		\item \textit{at LOCATION lives HERO}
-		\item \textit{once upon a time, at LOCATION lived HERO}
-		\item \textit{VICTIM lives at LOCATION}
-		\item ...
-	\end{itemize}
-	
-	\item The dictionary returns a random string from the set. In this case it returned \textit{HERO lives at LOCATION}
-	
-	\item The string is parsed. Words that are not in \textit{All Caps} will result as they are in the final text, while words that are are recognised as keywords and will be subjected to another processing step. In this case, the keywords are \textit{HERO} and \textit{LOCATION}.
-	
-	\item Each keyword is resolved to a ground instance of an existent. For each of them, the module records in a stack of \textit{Text Generation State} objects (section 6.1) information about the previous instantiation of the same existent.
-	
-	Focusing on the \textit{HERO} keyword, since this is the first line of the story it has never been encountered and instantiated before. In other circumstances, the logic predicate \(<HERO,value>\) would be present in the state data structure and the keyword would be substituted with \(value\).
-	
-	Since no previous instantiation of \textit{HERO} is found, the system needs to retrieve a new random value for the keyword from the dictionary of existents. 
-	
-	The dictionary contains several examples of heroes:
-	\begin{itemize}\setlength{\itemsep}{0pt}
-		\item \textit{Ivàn}
-		\item \textit{The Youth}
-		\item \textit{the woodcutter}
-		\item \textit{prince Boris}
-		\item \textit{the knight}
-		\item \textit{...}
-	\end{itemize}
-	
-	In this case, \textit{Prince Boris} was picked. The predicate \(<HERO,Prince Boris>\) is added to the current state so that in later text generation the hero remains consistent.
-	
-	In the same way, the keyword \textit{LOCATION} is given the value of a location from the existent dictionary.
-	
-	\item Each keyword is substituted with its final value. in this case \textit{HERO} was given the value \textit{prince Boris}, while \textit{LOCATION} was given \textit{the village}.
-\end{enumerate}
-
-Following this procedure the node \textit{intro} was translated into \textit{Prince Boris lives at the village}, \textit{demand\_murder} into \textit{the Black Knight demands the old man to be murdered}, and so on.
-
-The resulting text is that shown above.
-
-\bigskip
-
-The story continues.
-
-\begin{Verbatim}[frame=single]
-
-vengeance is required
-the king sends prince Boris on the mission
-prince Boris prepares
-the quest begins
-prince Boris departs
-prince Boris reaches the mountain
-
-\end{Verbatim}
-
-The generation proceeds with the next scenes in sequence: in this group of scenes, in this case, a dispatcher character (the king) orders the hero to prepare and leave to avenge the villainy.
-
-\begin{Verbatim}[frame=single]
-
-at the mountain lives the hermit
-the hermit attacks prince Boris
-the hermit and prince Boris fight each other
-prince Boris begins the test
-prince Boris has passed the test
-
-\end{Verbatim}
-
-This scene is generated by the \textit{FirstFunctionReaction} function. It encompasses multiple of the original functions defined by Propp, in which a donor character is introduced, the hero is tested, and the result of the test is made known.
-
-The graph associated to this function is shown below. In the figure, some nodes not involved in the path have been grouped together for ease of readability. A more complete documentation of the structure of this graph is in section 5.1.1.
-
-\begin{figure}[H]
-	\caption{Graph traversal, \textit{FirstFunctionReaction} function}
-	\label{fig:proppfunction}
-	
-	\bigskip
-	
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=30]
-	\node[dot,label={[align=left]left:{donor\\introduction}}] (intro) [] {};
-	\node[ball] (D) [right of = intro, xshift = 1.5cm] {...};
-	\node[ball] (C) [above of = D] {...};
-	\node[ball] (B) [above of = C] {...};
-	\node[ball] (A) [above of = B] {...};
-	\node[dot, label={[align=left]above:{donor\_attack}}] (E1) [below of = D, xshift = -1cm] {};
-	\node[dot, label={[align=left]above:{donor\_fight}}] (E2) [below of = D, xshift=1cm] {};
-	\node[ball] (F) [below of = E1, xshift = 1cm] {...};
-	\node[ball] (G) [below of = F] {...};
-	\node[dot,label={[align=left]right:{test}},
-	right of = D, xshift = 1.5cm] (test) [] {};
-	\node[dot,label={[align=left]above:{success}},
-	right of = test, yshift = 1cm] (success) [] {};
-	\node[dot,label={[align=left]below:{failure}},
-	right of = test, yshift = -1cm] (failure) [] {};
-	\node[dot,label={[align=left]right:{success ack}},
-	right of = success, xshift = 20] (success_ack) [] {};
-	\node[dot,label={[align=left]right:{failure ack}},
-	right of = failure, xshift = 20] (failure_ack) [] {};
-	\node[invis] (i) [above of = A, yshift = 25] {};
-	
-	\path
-	(intro) edge [bend left = 20] node {} (A)
-	(intro) edge [bend left = 15] node {} (B)
-	(intro) edge [bend left = 10] node {} (C)
-	(intro) edge [] node {} (D)
-	(intro) edge [bend right = 10,line width=2] node {} (E1)
-	(E1) edge [bend right=10,line width=2] node {} (E2)
-	(E2) edge [bend right = 10,line width=2] node {} (test)
-	(intro) edge [bend right = 15] node {} (F)
-	(intro) edge [bend right = 20] node {} (G)
-	(A) edge [bend left = 20] node {} (test)
-	(B) edge [bend left = 15] node {} (test)
-	(C) edge [bend left = 10] node {} (test)
-	(D) edge [] node {} (test)
-	(F) edge [bend right = 15] node {} (test)
-	(G) edge [bend right = 20] node {} (test)
-	(test) edge [bend left = 20,line width=2] node {} (success)
-	(test) edge [bend right = 20] node {} (failure)
-	(success) edge [line width=2] node {} (success_ack)
-	(failure) edge [] node {} (failure_ack);
-	
-	
-	\end{tikzpicture}
-\end{figure} 
-
-The graph traversal algorithm outputs the sequence of nodes \textit{donor\_introduction}, \textit{donor\_fight}, \textit{donor\_test}, \textit{success}, \textit{success\_ack}.
-
-Each one of these nodes is then translated into a line of the above by the Text Generation Layer.
-
-\bigskip
-
-In the current implementation the text resulting from the testing of the hero  is merely a placeholder to indicate that a test is taking place. With more authorial work more detail about these tests could be made part of the graph structure and appear in the story.
-
-\bigskip
-
-In this case, the plot generation layer outputs a sequence of events in which the aggressor is defeated immediately. 
-
-\begin{Verbatim}[frame=single]
-
-prince Boris will now be helped by the hermit
-prince Boris finds the magical sword
-prince Boris desires the magical sword
-prince Boris acquires the magical sword
-prince Boris discovers a way to the tower
-prince Boris follows the path to the tower
-prince Boris arrives to the tower
-
-\end{Verbatim}
-
-The plot generation layer has generated an atypical sequence of events that is particularly kind to the hero: he immediately finds a helping character, he immediately finds a magical item, he immediately finds a way to reach the tower where the villain is.
-
-None of these events is guaranteed to happen, especially not at the first attempt. In a more typical story more impasses arises demanding for a subplot to be introduced. In this case that is not necessary yet.
-
-\begin{Verbatim}[frame=single]
-
-prince Boris fights the Black Knight
-prince Boris is victorious
-prince Boris is scarred
-the Black Knight is defeated
-the Black Knight is imprisoned
-
-\end{Verbatim}
-
-This series of events covers the \textit{Struggle} and \textit{Liquidation} scenes. The output of the plot generation layer is yet an other victory for the hero, who defeats the villain immediately. Other possibilities would have been a defeat, requiring the hero to run away, or a victory obtained by employing the help of a helper character or a magical item.
-
-In this case the hero could have needed the help of the hermit he met earlier, or could have needed the magical sword he has found.
-
-\bigskip
-
-%TODO POSTCON
-
-Although victorious, the hero is scarred during the struggle. this event opens up new possibilities later in the story, since other events that are dependent from this one can now happen.
-
-\bigskip
-
-This is made possible by the dependency specification system, based on the STRIPS \cite{strips} standard explained in section 5.2.1: the node corresponding to the event \(E\), in which the hero was scarred, has a postcondition \(Post\), in this case being the logic predicate \(<hero\_mark,true>\). This predicate is added to the state structure.
-
-From this point on, any event \(E_1\), with precondition \(Pre\) for which it holds that \(Post \Rightarrow Pre\) is enabled and can be part of the plot.
-
-\bigskip
-
-An example of this behaviour is shown later within this story, when the hero manages to be recognised because of his scar.
-
-\begin{Verbatim}[frame=single]
-
-prince Boris returns
-prince Boris is returning
-the servant overhears prince Boris talking about his success
-the servant learns of what prince Boris has done
-the servant presents his claims to the king
-the king acknowledges the claims presented by the servant
-the servant is rewarded
-
-\end{Verbatim}
-
-Not everything goes according to plans: while the hero is returning, he unintentionally informs an other character, a false hero, of what happened.
-
-This false hero claims the rewards that would justly be given to the hero. The dispatcher character believes his claims and rewards him.
-
-\bigskip
-
-This is an impasse: the hero \textit{must} be rewarded at the end of the story, and if the rewards are claimed by someone else, the story cannot proceed.
-
-\bigskip
-
-The \textit{Impasse Scanner} module (see section 5.3) detects the node causing the impasse, and the \textit{Impasse Handler} introduces the appropriate subplot. In this subplot the hero presents his own claims to the dispatcher trying to obtain his just reward. If no other impasses occur, he eventually succeeds.
-
-\begin{Verbatim}[frame=single]
-
-prince Boris presents his claims to the king
-the king listens to prince Boris presenting his claims
-the claims are not accepted
-
-\end{Verbatim}
-
-The king is not convinced. The story generation is paused again and, once again through \textit{Impasse Scanner} and \textit{Impasse Handler}, a new subplot is introduced in which the hero tries again.
-
-\begin{Verbatim}[frame=single]
-
-prince Boris confronts the servant
-prince Boris is recognised by the mark he is carrying
-prince Boris is finally recognised
-
-\end{Verbatim}
-
-This time, rather than a scene in which he hero appeals to the dispatcher, the plot generation layer produces one in which the hero directly confronts the false hero.
-
-%TODO PRECON
-
-The hero is here recognised by a bodily mark. This is clearly possible only if he was previously marked in some way.
-
-\bigskip
-
-As explained earlier, the node associated to the event in which the hero is scarred during the fight with the villain had a poscondition \(Post\) which caused the logic predicate \(<hero\_mark,true>\) to be added to the state of the generation.
-
-The node associated to the event in which the hero is recognised by his bodily mark has a precondition \(Pre\) that is true if \(Post\) is true. In this case \(Pre\) is simply the same predicate \(<hero\_mark,true>\).
-
-\bigskip
-
-The graph traversal algorithm that defines the develoment of this scene, while traversing the graph, performs a logic analysis of the state, which is an object encoding the logic expression \(predicate_1 \wedge predicate_2 \wedge predicate_3 ...\).
-
-If it evaluates that \(state \Rightarrow Pre\), so that the precondition to the node is true in the context of the current state of the generation, then the node is enabled. 
-
-In this case this is true, since one of the predicates part of the state is \(Post\).
-
-\bigskip
-
-Then, the traversal has produced a path that includes the node in question, which becomes part of the plot.
-
-\bigskip
-
-Since the hero has now succeeded in being recognised, no more impasses occur, and the subplot can continue.
-
-\begin{Verbatim}[frame=single]
-
-the servant is exposed
-the reward to the servant is withdrawn
-the servant is punished
-the servant is killed
-
-\end{Verbatim}
-
-The subplot in which the hero solves the problem of his reward being unjustly given to a false hero ends with the false hero being exposed. In this case the scene ends with the servant being killed.
-
-\begin{Verbatim}[frame=single]
-
-prince Boris is rewarded with a magical crown
-
-\end{Verbatim}
-
-The story draws to a close and the hero is rewarded. The reward can take many forms, in this case he receives a valuable item.
-
-\section{The Youth and The Evil King}
-
-This is an other example of generated story. It was chosen because it highlights the workings of the recursive subplot system, without being overly long. 
-
-In it, the hero fails multiple times in overcoming a certain obstacle, and multiple subplots are introduced as a consequence.
-
-\begin{Verbatim}[frame=single]
-
-THE YOUTH AND THE EVIL KING
-
-the Evil King hears the Youth from afar
-the Youth unwillingly reveals information, 
-	upon which the Evil King hatches a plan
-
-\end{Verbatim}
-
-This is an instance of the \textit{Reconnaissance} function. In it, the villain attempts to obtain information about the hero or an item, or an other character.
-Once this information is obtained, the villain then commits its misdeed.
-
-While being part of the main sequence that is used in every story, this function did not appear in the previous example. This is because this chain of events can or can not happen, and sometimes the graph exploration algorithm generates an empty sequence.
-
-\begin{Verbatim}[frame=single]
-
-the Evil King seizes the magical bow
-the Evil King runs away to the forest
-
-\end{Verbatim}
-
-In this case the villainy is not a murder, but rather the theft of an object.
-
-\begin{Verbatim}[frame=single]
-
-the magical bow is needed
-the king announces the misfortune to the Youth
-the Youth acknowledges the problem
-the quest begins
-the Youth departs
-the Youth reaches the forest
-
-\end{Verbatim}
-
-This time the plot generation layer has produced a different development of the \textit{Departure} function.
-
-Rather than avenging the villainy, the hero will try to take back the missing object. In this case He wasn't issued an order by an authoritative character, but rather decides autonomously to depart.
-
-\begin{Verbatim}[frame=single]
-
-the Pixie is at the forest
-the Youth sees the Pixie
-the Youth wants to catch the Pixie
-the Youth catches the Pixie
-the Pixie begs the Youth
-the Youth begins the test
-the Youth has passed the test
-the Youth will now be helped by the Pixie
-the Pixie gives the magical sword to the Youth
-the Youth acquires the magical sword
-
-\end{Verbatim}
-
-This scene was generated based on the \textit{FirstFunctionReaction} function, just as in the example given in the previous story. The same graph structure can lead to different developments of the scene, depending on how the traversal algorithm traverses it.
-
-\begin{figure}[H]
-	\caption{Traversal of the graph associated to the \textit{FirstFunctionReaction} function}
-	\label{fig:proppfunction}
-	
-	\bigskip
-	
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=30]
-	\node[dot,label={[align=left]left:{donor\\introduction}}] (intro) [] {};
-	\node[ball] (D) [right of = intro, xshift = 3cm] {...};
-	\node[ball] (C) [above of = D] {...};
-	\node[ball] (B) [above of = C] {...};
-	\node[dot,label={[align=left]above:{sighted}}] (A3) [above of = B] {};
-	\node[dot,label={[align=left]below:{desired}}] (A2) [left of = A3] {};
-	\node[dot,label={[align=left]above:{caught}}] (A1) [left of = A2] {};
-	\node[dot,label={[align=left]below:{begging}}] (A4) [right of = A3] {};
-	\node[ball] (E) [below of = D] {...};
-	\node[ball] (F) [below of = E] {...};
-	\node[ball] (G) [below of = F] {...};
-	\node[dot,xshift = 1cm, label={[align=left]right:{test}},
-	right of = D, xshift = 1.5cm] (test) [] {};
-	\node[dot,label={[align=left]above:{success}},
-	right of = test, yshift = 1cm] (success) [] {};
-	\node[dot,label={[align=left]below:{failure}},
-	right of = test, yshift = -1cm] (failure) [] {};
-	\node[dot,label={[align=left]right:{success ack}},
-	right of = success, xshift = 20] (success_ack) [] {};
-	\node[dot,label={[align=left]right:{failure ack}},
-	right of = failure, xshift = 20] (failure_ack) [] {};
-	\node[invis] (i) [above of = A, yshift = 25] {};
-	
-	\path
-	(intro) edge [bend left = 20, line width=2] node {} (A1)
-	(A1) edge [bend left = 20, line width=2] node {} (A2)
-	(A2) edge [bend left = 20, line width=2] node {} (A3)
-	(A3) edge [bend left = 20, line width=2] node {} (A4)
-	(A4) edge [bend left = 20, line width=2] node {} (test)
-	
-	(intro) edge [bend left = 15] node {} (B)
-	(intro) edge [bend left = 10] node {} (C)
-	(intro) edge [] node {} (D)
-	(intro) edge [bend right = 10] node {} (E)
-	(E) edge [bend right = 10] node {} (test)
-	(intro) edge [bend right = 15] node {} (F)
-	(intro) edge [bend right = 20] node {} (G)
-	(B) edge [bend left = 15] node {} (test)
-	(C) edge [bend left = 10] node {} (test)
-	(D) edge [] node {} (test)
-	(F) edge [bend right = 15] node {} (test)
-	(G) edge [bend right = 20] node {} (test)
-	(test) edge [bend left = 20,line width=2] node {} (success)
-	(test) edge [bend right = 20] node {} (failure)
-	(success) edge [line width=2] node {} (success_ack)
-	(failure) edge [] node {} (failure_ack);
-	
-	
-	\end{tikzpicture}
-\end{figure} 
-
-Similarly to what happened in the same scene from the previous story, the hero meets a character, is tested, passes the test and obtains a magical item as reward.
-
-In this case, however, the test was not a fight, but rather a test of kindness: the hero captures the Pixie which begs him for freedom. He frees it and obtains a sword in exchange.
-
-The fact that, in both cases, the hero has been rewarded with a magical sword is not a consequence of any feature of the algorithm but instead is merely coincidence: the text generation layer has, in two different stories, picked the same item from the dictionary of existents.
-
-\begin{Verbatim}[frame=single]
-
-the Youth finds a path to the forest
-the Youth follows the path to the forest
-the Youth arrives to the forest
-
-\end{Verbatim}
-
-In this \textit{Guidance} scene, the hero autonomously finds a way to the location at which the villain is.
-
-This sometimes fails: the hero can be unable to proceed to that location. In these cases a subplot is introduced in which he seeks for the help of an other character, who can in turn show him the way or transport him directly.
-
-\begin{Verbatim}[frame=single]
-
-the Evil King and the Youth fight
-the Youth is unable to effectively fight the Evil King
-the Evil King is victorious
-
-\end{Verbatim}
-
-The hero is defeated. This is clearly a major obstacle in the subsequent development of the story, and therefore an impasse is raised. 
-
-The relevant modules introduce the new subplot, in which the hero runs away to safety, tries to obtain help in the form of a helping character or an item, and eventually tries again.
-
-\begin{Verbatim}[frame=single]
-
-the Youth barely escapes with his life
-the Youth resumes his travelling
-the Youth is now at the castle
-the hermit is at the castle
-the wit of the Youth is tested by the hermit
-the Youth begins the test
-the Youth has failed the test
-the Youth understands he has failed the test
-
-\end{Verbatim}
-
-After resuming his traveling, the hero meets an other donor character, in a new instance of the same \textit{FirstFunctionReaction} scene, in which he meets the donor, is tested, and reacts to the test. 
-
-The same graph structure has been traversed in a different way and this has produced a different scene: a test of wit rather than a test of mercy, resulting in a failure instead of a success.
-
-\begin{figure}[H]
-	\caption{Traversal of the graph associated to the \textit{FirstFunctionReaction} function}
-	\label{fig:proppfunction}
-	
-	\bigskip
-	
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=30]
-	\node[dot,label={[align=left]left:{donor\\introduction}}] (intro) [] {};
-	\node[ball] (D) [right of = intro, xshift = 1.5cm] {...};
-	\node[dot] (C) [above of = D,label={[align=left]above:{test\_wit}}] {};
-	\node[ball] (B) [above of = C] {...};
-	\node[ball] (A) [above of = B] {...};
-	\node[ball] (E) [below of = D] {...};
-	\node[ball] (F) [below of = E] {...};
-	\node[ball] (G) [below of = F] {...};
-	\node[dot,xshift = 1cm, label={[align=left]right:{test}},
-	right of = D, xshift = 0.5cm] (test) [] {};
-	\node[dot,label={[align=left]above:{success}},
-	right of = test, yshift = 1cm] (success) [] {};
-	\node[dot,label={[align=left]below:{failure}},
-	right of = test, yshift = -1cm] (failure) [] {};
-	\node[dot,label={[align=left]right:{success ack}},
-	right of = success, xshift = 20] (success_ack) [] {};
-	\node[dot,label={[align=left]right:{failure ack}},
-	right of = failure, xshift = 20] (failure_ack) [] {};
-	\node[invis] (i) [above of = A, yshift = 25] {};
-	
-	\path
-	(intro) edge [bend left = 20] node {} (A)
-	(A) edge [bend left = 20] node {} (test)
-	
-	(intro) edge [bend left = 15] node {} (B)
-	(intro) edge [bend left = 10,line width=2] node {} (C)
-	(intro) edge [] node {} (D)
-	(intro) edge [bend right = 10] node {} (E)
-	(E) edge [bend right = 10] node {} (test)
-	(intro) edge [bend right = 15] node {} (F)
-	(intro) edge [bend right = 20] node {} (G)
-	(B) edge [bend left = 15] node {} (test)
-	(C) edge [bend left = 10,line width=2] node {} (test)
-	(D) edge [] node {} (test)
-	(F) edge [bend right = 15] node {} (test)
-	(G) edge [bend right = 20] node {} (test)
-	(test) edge [bend left = 20] node {} (success)
-	(test) edge [bend right = 20,line width=2] node {} (failure)
-	(success) edge [] node {} (success_ack)
-	(failure) edge [line width=2] node {} (failure_ack);
-	
-	
-	\end{tikzpicture}
-\end{figure} 
-
-The fact that different traversals of the same graph structure yield different scenes in beneficial, and is reinforced by the \textit{inverse frequency} policy used by the algorithm.
-
-\bigskip
-
-In this scene the hero has met a new donor character.
-
-This character is different from the first donor the hero encountered. The first one was a pixie, while this one is a hermit. The text generation layer correctly picked a new existent to fulfill the same role, due to the mechanics explained in section 6.1.
-
-In this case the hero is subjected to a test of intelligence and wit, but fails. Again, this generates a new impasse, and a subplot to this subplot is introduced recursively. This subplot will be resolved when the hero manages to pass a test and obtain help.
-
-\begin{Verbatim}[frame=single]
-
-the Youth resumes his travelling
-he Youth arrives at the tower
-the warrior is held in captivity. He sees the Youth approaching
-the warrior wants to be free
-the warrior asks the Youth for freedom
-the Youth begins the test
-the Youth has failed the test
-
-\end{Verbatim}
-
-The hero is tested again and fails again. An other subplot is required.
-
-\begin{Verbatim}[frame=single]
-
-the Youth resumes his travelling
-at the mountain lives the lady of the forest
-the lady of the forest is displaying the flying shoes
-the lady of the forest sees the Youth
-the lady of the forest sees the Youth
-the lady of the forest offers a trade
-the Youth begins the test
-the Youth has passed the test
-
-\end{Verbatim}
-
-The hero meets yet an other character, is tested again, and this time succeeds.
-
-This results in a known pattern that is common in folktales: the triple repetition of an event. However, this is not coded in any way, but rather it emerges randomly from the recursive nature of the subplot system.
-
-The subplot is resolved and, because of the recursive structure in use, so are the subplots from which it was introduced. 
-
-The generation process can continue from the subplot in which the hero was trying to fight the villain again.
-
-\begin{Verbatim}[frame=single]
-
-the lady of the forest decides to help the Youth
-the Youth is magically transported to the mountain 
-	by the lady of the forest
-the Youth is finally at the mountain
-
-\end{Verbatim}
-
-The recently met donor helps the hero by transporting him to the desired location. He can now attempt to defeat the villain again.
-
-\begin{Verbatim}[frame=single]
-
-the Youth and the Evil King engage in a fight
-the magical sword helps the Youth in the fight
-the Youth defeats the Evil King
-the Youth obtains the magical bow
-the Youth seizes the magical bow
-
-\end{Verbatim}
-
-The two fight and the hero is victorious, thanks to the item he had obtained previously. The State of the generation contains information about the villainy committed, and this enables a path in the graph structure of the \textit{Liquidation} scene (in which the villainy is liquidated) in which the hero obtains the item he was searching for: the magical bow seized by the villain in the \textit{Villainy} scene.
-
-\begin{Verbatim}[frame=single]
-
-the Youth returns
-the Youth has arrived back
-the Youth marries
-
-\end{Verbatim}
-
-The hero returns, since the node in which information about the hero's deeds are divulged to a malevolent false hero, no obstacle to the hero being rewarded arises and no subplot in which he struggles to prove his claims is needed. 
-
-He simply goes back and marries.
-
-\bigskip
-
-These two stories show how the mechanics described in the previous chapters concur in generating the final narrative. 
-
-The same two stories are available in appendix A in a more readable, uninterrupted, form.
-
-More general considerations about this architecture in its entirety will be the subject of the next chapter.
-
-\chapter{Discussion}
-This approach has a few characteristics that set it apart from others already present in literature:
-
-\begin{itemize}\setlength{\itemsep}{0pt}
-	\item At the best of our knowledge, it is one of the very few attempts at generating Constrained Plot and Constrained Space (see 2.2), the others being the systems \textit{Say Anything} \cite{swanson08}, \textit{Scheherazade} \cite{scheherazade} and \textit{Thespian} \cite{thespian}. 
-	
-	Among the other examples of this level of automation, it is unique because:
-	\begin{itemize}\setlength{\itemsep}{0pt}
-		\item Differently from \textit{Thespian}, it is not based on character simulation. This allows for the generated stories to be always centered on a single character (the hero), making them better suited to serve as narrative superstructure to activities in which the user is always the protagonist, upon which the narration is focused.
-		\item It doesn't require a human to be present during the generation process, as it is in the case of \textit{Say Anything} or \textit{Scheherazade}.
-		
-		While a certain amount of authorial work is still required to provide the system with the necessary knowledge base so that it can operate, this work takes place before the generation starts and only once. 
-		
-		Many stories can be generated thereafter by the system in autonomy without the need for any further interaction.
-	\end{itemize}
-	\item While others have a narrower scope, this is the only approach in which multiple levels of abstraction are considered: this system is based on the cooperation between a high level algorithm, generating the scene structure of the story based on Propp's formalism, and one at a lower level, based on the Fabula Network Model, that generates the specific chain of events that constitute each scene.
-	
-	
-	\item The high degree of modularity allows for customisation, flexibility and expansion of the system.
-	
-	In particular the mechanics in place allow for the specification of a set of events that will necessarily happen in the story, or even a certain amount of repetitions of the same event. 
-\end{itemize}
-
-\pagebreak
-
-\section{A potential application}
-In order to reach the final goal of providing context, meaning and an interesting narrative superstructure to a set of activities, generating a story is not enough, as it has to be integrated with the system proposing these activities and delivered to the user.
-
-\bigskip
-
-The actual integration of the story generator into a project such as MoveCare or REWIRE is outside the scope of this work, mainly because the system that processes the story and delivers it to the user is yet to be fully defined.
-
-In short it is proposed to deliver stories to the user partially in the form of text, and partially in the form of animations. This is discussed in more detail in section 9.1: \textit{Further Developments and Improvements}.
-
-However, here is outlined a way in which a story can potentially be integrated and delivered. Two of the three activities listed below are merely an example and do not represent real-world implemented ones.
-
-\bigskip
-
-The story used as example is \textit{Prince Boris and the Black Knight}. It already served a similar purpose in the previous chapter. 
-
-Here only extracts from it are reported, it can be found in its entirety in appendix A.
-
-\bigskip
-
-Let us assume that a user is to be proposed a set of three activities:
-
-\begin{enumerate}\setlength{\itemsep}{0pt}
-	\item An exergame for physical rehabilitation: the user sits or stands alternatively. This translates into a movement of his or her avatar who is riding a horse. The correct movements of the user allow the avatar to dodge various obstacles that would otherwise hit it while the horse moves along a path. This is an example of a real-world exergame, called \textit{Horse Rider} that has been developed in REWIRE.
-	\item A puzzle game designed as a cognitive exercise: the user has to correctly compose an image of a landscape. When the image is complete a path is visible on it.
-	\item An other physical exergame in which movements of the user translate into movements of an avatar who fights an other character, perhaps in dodging the blows of the opponent, or in striking in some way.
-\end{enumerate}
-
-These activities could be mapped to story events as follows:
-
-\begin{enumerate}\setlength{\itemsep}{0pt}
-	\item The horse riding exergame is mapped to events in which the hero reaches a new location.
-	\item The puzzle game can represent moments in which the hero is trying to reach a new location
-	\item The fighting exergame fits well with the moment of struggle between hero and villain.
-\end{enumerate}
-
-A .json file containing an \(<ActivityID, StoryNodeID>\) pair for each activity to be proposed is passed as parameter to the generator. This will force the generator to produce a story containing at least one instance of the nodes identified by \(StoryNodeID\), and to associate it to the appropriate \(ActivityID\) in the output. 
-
-After completing the generation process, the system returns an other .json file containing the text of the story and the association between story events and activities. For more details about the format of the output file, see section 6.1.
-
-\bigskip
-
-The story opens with the presentation of the main character. This can be conveyed to the user via a short piece of text.
-
-Then, the Black Knight order a murder to be committed:
-
-\begin{Verbatim}[frame=single]
-the old man is murdered
-\end{Verbatim}
-
-This could be made into a short, simple animation showing the murder in a simplified way. 
-
-This would require a set of dictionaries of assets representing the various existents and characters. This issue i discussed further in section 9.1.
-
-\bigskip
-
-After the murder, the hero is informed of what happened by the King, and then departs to seek vengeance. 
-
-This can become a piece of text, perhaps interleaved with an animation showing the king talking to prince Boris.
-
-\begin{Verbatim}[frame=single]
-prince Boris reaches the mountain 
-\end{Verbatim}
-
-The hero reaches a new location. The .json returned by the generator associates this event with the horse riding exergame. The users plays until the game is completed.
-
-Once the game finishes, the story continues: prince Boris is assaulted by a hermit who lives in the forest and wins. Prince Boris then finds a magical sword.
-
-This part can again be translated into a mix of text and animations: perhaps an animation can show the fight, or an other can show prince Boris wielding the newly found magical sword.
-
-The hero is now attempting to reach the location at which the villain has retreated after committing his misdeed, so that he can be fought and vanquished.
-
-\begin{Verbatim}[frame=single]
-prince Boris discovers a way to the tower 
-\end{Verbatim}
-
-This event is associated to the second activity: the cognitive puzzle game.
-
-The user plays and completes the game. 
-
-\bigskip
-
-The story continues with the hero reaching the tower where the villain is and engaging him.
-
-\begin{Verbatim}[frame=single]
-prince Boris fights the Black Knight 
-\end{Verbatim}
-
-Here the third activity is presented to the user: the fighting exergame.
-
-Once that has been completed as well, the story continues: although the hero was victorious, he was injured in the fight and remains scarred.
-
-while the hero is returning home he inadvertently informs a servant of his deed.
-
-The servant then pretends to be the one who vanquished the villain and claims prince Boris' just reward in his stead.
-
-An animation could show the servant talking to the king, or the king rewarding the servant.
-
-The hero then tries to disprove the servant's lies but he fails, he then confronts the servant and finally prevails, proving his deed thanks to the scar he received from the villain. The servant is exposed and punished.
-
-\begin{Verbatim}[frame=single]
-prince Boris is rewarded with a magical crown
-\end{Verbatim}
-
-The story comes to a close: an animation shows the hero being justly rewarded by the king.
-
-\bigskip
-
-This is an example of how a relatively simple story could provide context to a set of three, unrelated, activities, in an way that is more interesting and engaging to the user.
 
 \chapter{Conclusions}
 In conclusion, this work presents a new approach for Constrained Story Generation (see 2.1: \textit{The Mixed Initiative approach}), based on a two-layered architecture.
@@ -2939,38 +2058,28 @@ The output of this layer is used by a Text Generation layer, which re-introduces
 
 \bigskip
 
-Referring to the requirements given in 1.1.5, results show how the system adheres to the specification, in particular, the narrative generated, and the system that generates it, show the following properties:
+This approach has a few characteristics that make it different from others already present in literature:
 
 \begin{itemize}\setlength{\itemsep}{0pt}
-	\item \textbf{The narrative is coherent}. This is ensured by the mechanics in place that allow for the specification of coherence and consistency rules (see sections 5.1 and 5.2).
-	\item \textbf{It contains Struggle}, as the system generates narrative from a knowledge base given as input, it is sufficient to define such knowledge base in a way that produces struggle in the output. The knowledge base currently in use is based on Propp's formalisation of Russian folktales, so that the struggle between hero and villain that is one of their defining factor reflects in the output.
-	\item \textbf{It is focused on a single character}. Again, a property of the knowledge base chosen, as most real-world folktales focus on a Hero character.
-	\item \textbf{The system is expandable}: it is currently a proof-of-concept, but it has been designed in a highly modular way that allows for easier enhancement.
-	\item \textbf{The system is programmable}: the knowledge base of the system is completely modular and can be changed at will: changing graph structures will change how the same scenes develop, changing the sequences of scenes used will change the general narrative structure, changing the dictionaries allows for the changing of text, language, and setting.
+\item It is one of the very few attempts at generating Constrained Plot and Constrained Space (see 2.2). Among the other examples of this level of automation, it is the only one not to be based on character simulation, and the only one that doesn't require a human to be present during the generation process.
+\item It is the only approach based on the cooperation between two different levels of abstraction: one at a high level, based on Prop's research, and one at a lower level, based on the Fabula Network Model.
+\item The high degree of modularity allows for customisation, flexibility and expansion of the system.
 \end{itemize}
-
-\bigskip
-
-These properties ensure that this approach is in fact applicable in the context of those healthcare-related projects described in section 1.1, as well as in other similar contexts. 
-
-A hypothetical example of application has been given in the previous chapter.
-
-\bigskip
 
 At the same time, the system shows a clear limitation, being the amount of authorial work that is required prior to the actual generation process.
 
-In particular, in order to initiate any actual generation process, a human author needs to define the following:
+In particular, in order to launch an effective generation process, a human author needs to define the following:
 \begin{itemize}\setlength{\itemsep}{0pt}
-	\item A set of scenes composing the main plot, and a number of scene sequences describing subplots. Currently the set of Functions defined by Propp is being used, but the system can work with any group of scenes.
-	\item A probabilistic graph structure for each scene, defining the different events that can happen. Again, in the current implementation these are based on the definition of scenes given by Propp.
-	\item Proper logic rules to ensure consistency within a scene and between scenes.
-	\item Impasses, and the subplots to be introduced to solve them.
-	\item A Text Dictionary, carrying the semantic information to be associated to node labels.
+\item A set of scenes composing the main plot, and a number of scene sequences describing subplots. Currently the set of Functions defined by Propp is being used, but the system can work with any group of scenes.
+\item A probabilistic graph structure for each scene, defining the different events that can happen. Again, in the current implementation these are based on the definition of scenes given by Propp.
+\item Proper logic rules to ensure consistency within a scene and between scenes.
+\item Impasses, and the subplots to be introduced to solve them.
+\item A Text Dictionary, carrying the semantic information to be associated to node labels.
 \end{itemize}
 
-Especially the design and input of graph structures are particularly demanding tasks.
+Especially the design and input of graph structures are particularly demanding tasks. The specific way in which the data are coded will be explained in appendix B.
 
-This step requires the author to decide in what ways a scene can develop, encode this information into a graph with the appropriate language, and define the appropriate rules to ensure consistency in the results.
+This step requires the author to decide in what ways a scene can develop, code this information into a graph with the appropriate language, and define the appropriate rules to ensure consistency in the results.
 
 Given that the system cannot generate anything outside the space given to it as knowledge base, the quality and variety of generated stories depends on the quality and volume of the inputs. For this reason, quality in the output requires a substantial investment in the authorial phase.
 
@@ -2982,30 +2091,27 @@ The ways in which these limits can be improved upon or overcome are part of the 
 
 \section{Further Developments And Improvements}
 
-The result of this work is not a complete product. Some developments are needed in order to make it usable in the context of projects akin to MoveCare or REWIRE (see chapter 1). Moreover, it could benefit from a few improvements that would make it more effective in fulfilling its role.
+The result of this work is not a complete product. Some developments are needed in order to make it usable in the context of projects like MoveCare or REWIRE (see chapter 1). Moreover, it could benefit from a few improvements that would make it more effective in fulfilling its role.
 
 \bigskip
 
-\subsection{Necessary Steps}
+\subsection{Necessary Refinements}
 
 In order to make this architecture usable in a real-world application, it is first of all necessary to further develop the Text Generation step. The current system (see Appendix A for examples) is sufficient to show that semantic information can be re-introduced in the story structure, but is too primitive to generate text that can be considered interesting by a user.
 
 The generation of complex text, or the \textit{Discourse} (see chapter 2) of a story, is a vast subject, with many open questions, difficult to undertake. 
 
-
-As explained in the \textit{Discussion} chapter, the proposed way to develop the system in order to overcome this obstacle is to convey the output to the user partly in the form of text, and partly in the form of animated images.
-
-\bigskip
+The proposed way to develop the system in order to overcome this obstacle is to convey the output to the user partly in the form of text, and partly in the form of animated images.
 
 It is certainly possible to compose simple, 2-dimensional, animations based on the short texts used to define the semantic meaning of node labels. 
+
+\bigskip
 
 For instance, starting from a database of sprites and animations, a piece of text like \textit{the knight and the witch engage in a fight} can be used to generate and show a short animated clip of a knight and a witch fighting. The same can apply to many more events of the story.
 
 At the same time, some text is still required. In some cases the events narrated don't translate well into an animation: \textit{the prince reflected upon the problem} would probably translate into an uninteresting animation, for instance. 
 
 Also, having images or animations accompanied by text would be the preferred way of presenting a story and, while requiring less text than a text-only presentation, would still require a refinement of the text generation procedure.
-
-Enhancing the text generation process would therefore have a strong impact on the final effectiveness of the whole system.
 
 \bigskip
 
@@ -3033,13 +2139,13 @@ However, this is not necessary for the testing of the system as a pure story gen
 Here is proposed a process to determine whether the system is successful in generating acceptable stories, through crowdsourcing.
 
 \begin{enumerate}\setlength{\itemsep}{0pt}
-	\item The generator is used to produce a set of stories.
-	\item A set of real-world tales is selected. 
-	\item These stories are decomposed by hand into sequences of the same texts defined in the text dictionary. This way they will be indistinguishable from generated stories in terms of language. Whatever differences in structure and existents remain.
-	\item A set of stories of the same size is generated.
-	\item A set of existents is composed, containing some from the real-world stories and others that did not appear in them. Ensuring that enough foreign existents are part of the set will make real stories less recognisable.
-	\item Existents in the two groups of stories are scrambled.
-	\item A sample containing both groups, shuffled, is presented to a crowd", of sufficient size. Subjects are asked to estimate how much each story seems "real" or "fake", and why.
+\item The generator is used to produce a set of stories.
+\item A set of real-world tales is selected. 
+\item These stories are decomposed by hand into sequences of the same texts defined in the text dictionary. This way they will be indistinguishable from generated stories in terms of language. Whatever differences in structure and existents remain.
+\item A set of stories of the same size is generated.
+\item A set of existents is composed, containing some from the real-world stories and others that did not appear in them. Ensuring that enough foreign existents are part of the set will make real stories less recognisable.
+\item Existents in the two groups of stories are scrambled.
+\item A sample containing both groups, shuffled, is presented to a crowd", of sufficient size. Subjects are asked to estimate how much each story seems "real" or "fake", and why.
 \end{enumerate}
 
 This process should highlight any differences in the structure of stories, between real and generated ones. Differences in language and existents should have been removed by the translation and scrambling steps.
@@ -3062,138 +2168,261 @@ The first obstacle to any research on the subject would be the lack of datasets 
 
 \appendix
 
-\chapter{Two examples of generated narrative}
-Below are reported the two generated stories discussed in chapters 7 and 8, in a more readable form, without commentary.
+\chapter{Examples}
+Below are shown two examples of generated stories. This is not a representation of the full output but rather only of the output text data. Node label, node type and proposed activities are not reported.
+
+Titles have been generated by adding a special node containing the text \textit{HERO and VILLAIN}. This node is then processed like any other, so the variables are resolved to ground existents.
+
+This procedure is by no means final, but it is still useful to give some context, albeit crude, to the story, by introducing the main characters.
 
 \section{Prince Boris and the Black Knight}
-\begin{Verbatim}[frame=single]
 
-PRINCE BORIS AND THE BLACK KNIGHT
+\begin{longtable}[H]{| p{0.5\textwidth} | p{0.5\textwidth} |}
+	\caption {Prince Boris and the Black Knight}\\
+\hline
+prince Boris lives at the tower & the hero is introduced\\
+\hline
+the Black Knight demands the old man to be murdered & \\
+\hline
+the demand is accepted & \\
+\hline
+the old man is murdered & \\
+\hline
+the Black Knight goes in hiding at the tower & \\
+\hline
+vengeance is required & \\
+\hline
+the king sends prince Boris on the mission & \\
+\hline
+prince Boris prepares & \\
+\hline
+the quest begins&  \\
+\hline
+prince Boris departs & \\
+\hline
+prince Boris reaches the tower & \\
+\hline
+at the tower lives the hermit & \\
+\hline
+the hermit attacks prince Boris & \\
+\hline
+the hermit and prince Boris fight each other & \\
+\hline
+prince Boris begins the test & \\
+\hline
+prince Boris has passed the test & no impasse\\
+\hline
+prince Boris will now be helped by the hermit & \\
+\hline
+prince Boris finds the magical sword & \\
+\hline
+prince Boris desires the magical sword & \\
+\hline
+prince Boris acquires the magical sword & \\
+\hline
+prince Boris discovers a way to the tower & no impasse\\
+\hline
+prince Boris follows the path to the tower & \\
+\hline
+prince Boris arrives to the tower & \\
+\hline
+prince Boris fights the Black Knight & \\
+\hline
+prince Boris is victorious & no impasse again\\
+\hline
+prince Boris is scarred & this event allows the hero to be recognised by the scar\\
+\hline
+the Black Knight is defeated & \\
+\hline
+the Black Knight is imprisoned & \\
+\hline
+prince Boris returns & \\
+\hline
+prince Boris is returning & \\
+\hline
+the servant overhears prince Boris talking about his success & \\
+\hline
+the servant learns of what prince Boris has done & \\
+\hline
+the servant presents his claims to the king & \\
+\hline
+the king acknowledges the claims presented by the servant & \\
+\hline
+the servant is rewarded & impasse: a subplot is introduced\\
+\hline
+prince Boris presents his claims to the king & \\
+\hline
+the king listens to prince Boris presenting his claims & \\
+\hline
+the claims are not accepted & \\
+\hline
+prince Boris confronts the servant & \\
+\hline
+prince Boris is recognised by the mark he is carrying & this can only happen if the hero has been scarred\\
+\hline
+prince Boris is finally recognised & \\
+\hline
+the servant is exposed & \\
+\hline
+the reward to the servant is withdrawn & \\
+\hline
+the servant is punished & \\
+\hline
+the servant is killed & \\
+\hline
+prince Boris is rewarded with a magical crown 	& \\
+\hline
+\end{longtable}
 
-prince Boris lives at the village
-the Black Knight demands the old man to be murdered
-the demand is accepted
-the old man is murdered
-the Black Knight goes in hiding at the tower
-vengeance is required
-the king sends prince Boris on the mission
-prince Boris prepares
-the quest begins
-prince Boris departs
-prince Boris reaches the mountain
-at the mountain lives the hermit
-the hermit attacks prince Boris
-the hermit and prince Boris fight each other
-prince Boris begins the test
-prince Boris has passed the test
-prince Boris will now be helped by the hermit
-prince Boris finds the magical sword
-prince Boris desires the magical sword
-prince Boris acquires the magical sword
-prince Boris discovers a way to the tower
-prince Boris follows the path to the tower
-prince Boris arrives to the tower
-prince Boris fights the Black Knight
-prince Boris is victorious
-prince Boris is scarred
-the Black Knight is defeated
-the Black Knight is imprisoned
-prince Boris returns
-prince Boris is returning
-the servant overhears prince Boris talking about his success
-the servant learns of what prince Boris has done
-the servant presents his claims to the king
-the king acknowledges the claims presented by the servant
-the servant is rewarded
-prince Boris presents his claims to the king
-the king listens to prince Boris presenting his claims
-the claims are not accepted
-prince Boris confronts the servant
-prince Boris is recognised by the mark he is carrying
-prince Boris is finally recognised
-the servant is exposed
-the reward to the servant is withdrawn
-the servant is punished
-the servant is killed
-prince Boris is rewarded with a magical crown
+In this first example the hero only runs into one impasse. Every other obstacle is overcome immediately: a sudden aggression is repelled defeated and the aggressor becomes a helper, a magical item is found, the villain is defeated in the first attempt.
 
-\end{Verbatim}
+When Prince Boris is returning home, however, a servant gains knowledge of what happened and claims the reward in his stead. A subplot is introduced in which the hero is recognised by a bodily mark: a scar inflicted to him during his fight with the villain.
 
-\pagebreak
+The story then draws to an end: the false hero is exposed and killed, and the Prince is rewarded with a magical item.
+
+The hero being scarred and then recognised is an example of how consistency rules can be used to enable certain events. The postcondition of the node associated to the scarring is the precondition to the one in which the hero is recognised from a bodily mark. This way this can of recognition can only take place if the hero has been previously marked during combat.
 
 
 \section{The Youth and The Evil King}
-\begin{Verbatim}[frame=single]
 
-THE YOUTH AND THE EVIL KING
+\begin{longtable}[H]{| p{0.5\textwidth} | p{0.5\textwidth} |}
+\caption {The Youth and The Evil King}\\
+\hline
+the Evil King hears the Youth from afar & \\ 
+\hline
+the Youth unwillingly reveals information, upon which the Evil King hatches a plan & \\
+\hline
+the Evil King seizes the magical bow & \\ 
+\hline 
+the Evil King runs away to the forest & \\ 
+\hline 
+the magical bow is needed  & \\ 
+\hline
+the king announces the misfortune to the Youth  & \\ 
+\hline
+the Youth acknowledges the problem  & \\ 
+\hline
+the quest begins  & \\ 
+\hline
+the Youth departs  & \\ 
+\hline
+the Youth reaches the forest  & \\ 
+\hline
+the Pixie is at the forest  & \\ 
+\hline
+the Youth sees the Pixie  & \\ 
+\hline
+the Youth wants to catch the Pixie  & \\ 
+\hline
+the Youth catches the Pixie  & \\ 
+\hline
+the Pixie begs the Youth  & \\ 
+\hline
+the Youth begins the test  & \\ 
+\hline
+the Youth has passed the test  & \\ 
+\hline
+the Youth will now be helped by the Pixie  & \\ 
+\hline
+the Pixie gives the magical sword to the Youth  & \\ 
+\hline
+the Youth acquires the magical sword & \\ 
+\hline
+the Youth finds a path to the forest  & \\ 
+\hline
+the Youth follows the path to the forest  & \\ 
+\hline
+the Youth arrives to the forest  & \\ 
+\hline
+the Evil King and the Youth fight  & \\ 
+\hline
+the Youth is unable to effectively fight the Evil King  & \\ 
+\hline
+the Evil King is victorious  & impasse: the hero has been defeated\\ 
+\hline
+the Youth barely escapes with his life  & filler: new subplot introduced\\ 
+\hline
+the Youth resumes his travelling  & \\ 
+\hline
+the Youth is now at the castle  & \\ 
+\hline
+the hermit is at the castle  & \\ 
+\hline
+the Youth is tested by the hermit  & \\ 
+\hline
+the Youth begins the test  & \\ 
+\hline
+the Youth has failed the test  & impasse: test failed\\ 
+\hline
+the Youth understands he has failed the test  & \\ 
+\hline
+the Youth resumes his travelling  & a subplot is introduced so that the hero can try again\\ 
+\hline
+the Youth arrives at the tower  & \\ 
+\hline
+the warrior is at the tower  & \\ 
+\hline
+the warrior is held in captivity. He sees the Youth approaching  & \\ 
+\hline
+the warrior wants to be free  & \\ 
+\hline
+the warrior asks the Youth for freedom  & \\ 
+\hline
+the Youth begins the test  & \\ 
+\hline
+the Youth has failed the test  & an other failure. An additional subplot is introduced recursively, in which he will try again\\ 
+\hline
+the Youth resumes his travelling  & \\ 
+\hline
+the Youth is now at the mountain  & \\ 
+\hline
+at the mountain lives the lady of the forest  & \\ 
+\hline
+the lady of the forest is displaying the flying shoes  & \\ 
+\hline
+the lady of the forest sees the Youth  & \\ 
+\hline
+the lady of the forest offers a trade  & \\ 
+\hline
+the Youth begins the test  & \\ 
+\hline
+the Youth has passed the test  & success, the impasse is broken\\ 
+\hline
+the lady of the forest decides to help the Youth  & \\ 
+\hline
+the Youth is magically transported to the mountain by the lady of the forest & the donor actively helps in enabling the hero's transportation\\ 
+\hline
+the Youth is finally at the mountain  & \\ 
+\hline
+the Youth and the Evil King engage in a fight & \\ 
+\hline
+the magical sword helps the Youth in the fight & the hero can use an item he previously acquired\\ 
+\hline
+the Youth defeats the Evil King  & \\ 
+\hline
+the Youth obtains the magical bow & \\ 
+\hline
+the Youth seizes the magical bow  & \\ 
+\hline
+the Youth returns  & \\ 
+\hline
+the Youth has arrived back & \\ 
+\hline
+the Youth marries & \\ 
+\hline
+\end{longtable}
 
-the Evil King hears the Youth from afar
-the Youth unwillingly reveals information, 
-	upon which the Evil King hatches a plan
-the Evil King seizes the magical bow
-the Evil King runs away to the forest
-the magical bow is needed
-the king announces the misfortune to the Youth
-the Youth acknowledges the problem
-the quest begins
-the Youth departs
-the Youth reaches the forest
-the Pixie is at the forest
-the Youth sees the Pixie
-the Youth wants to catch the Pixie
-the Youth catches the Pixie
-the Pixie begs the Youth
-the Youth begins the test
-the Youth has passed the test
-the Youth will now be helped by the Pixie
-the Pixie gives the magical sword to the Youth
-the Youth acquires the magical sword
-the Youth finds a path to the forest
-the Youth follows the path to the forest
-the Youth arrives to the forest
-the Evil King and the Youth fight
-the Youth is unable to effectively fight the Evil King
-the Evil King is victorious
-the Youth barely escapes with his life
-the Youth resumes his travelling
-the Youth is now at the castle
-the hermit is at the castle
-the wit of the Youth is tested by the hermit
-the Youth begins the test
-the Youth has failed the test
-the Youth understands he has failed the test
-the Youth resumes his travelling
-he Youth arrives at the tower
-he Youth arrives at the tower
-the warrior is held in captivity. He sees the Youth approaching
-the warrior wants to be free
-the warrior asks the Youth for freedom
-the Youth begins the test
-the Youth has failed the test
-the Youth resumes his travelling
-the Youth resumes his travelling
-at the mountain lives the lady of the forest
-the lady of the forest is displaying the flying shoes
-the lady of the forest sees the Youth
-the lady of the forest sees the Youth
-the lady of the forest offers a trade
-the Youth begins the test
-the Youth has passed the test
-the lady of the forest decides to help the Youth
-the Youth is magically transported to the mountain 
-	by the lady of the forest
-the Youth is finally at the mountain
-the Youth and the Evil King engage in a fight
-the magical sword helps the Youth in the fight
-the Youth defeats the Evil King
-the Youth obtains the magical bow
-the Youth seizes the magical bow
-the Youth returns
-the Youth has arrived back
-the Youth marries
+In this story, multiple impasses are caused by the hero failing at obtaining the help of various donors. Initially he manages to have a magical sword given to him, by freeing a pixie.
 
-\end{Verbatim}
+Later he is defeated by the villain and barely escapes. he would try again, but he fails twice in obtaining the help of other characters: he fails in answering to the questions of a hermit, and in freeing a warrior held prisoner in a tow. He then he accepts a trade with the lady of the forest and is transported again by her to the mountain where the villain is hiding. 
 
+\bigskip
+
+In the current implementation the text resulting from these texts is rather dull and repetitive, because the path describing them is meant as a placeholder to indicate that a test is taking place. With more authorial work more detail about these tests could be made part of the graph structure and appear in the story.
+
+\bigskip
+
+The hero then defeats the villain and returns back to get married. In this story no false hero appears, since the hero returns back without divulging information about his deed.
 
 
 
